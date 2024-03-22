@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converse Clone</title>
+  <link rel="stylesheet" href="./general.css">
+  <link href="https://fonts.cdnfonts.com/css/proxima-nova-condensed" rel="stylesheet">                
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://kit.fontawesome.com/830d8d2c62.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+  <main>
+    <hr class="mt-4">
+    <div class="container">
+      <div class="text-center text-white p-5 mt-3" style="background-image: url(./img/bg.jpeg); width: 100%; height: auto; background-repeat: no-repeat; background-size: cover;">
+        <h2>Create An Account</h2>
+        <p class="mt-4">
+          With your Converse account, enjoy free shipping and returns, a faster
+          checkout, and a more personalized experience. You can even save your 
+           favorites as you shop, and access new releases and special offers.
+        </p>
+      </div>
+      <div class="row mt-3 mb-5">
+        <div class="col-lg-1 d-none d-lg-block"></div>
+
+        <div class="col-lg-4 col-md-6 col-12">
+          <p class="mt-3">Please fill the fields below:</p>
+          <form class="mb-3  needs-validation" novalidate name="frmSignIn">   
+            <label for="fName" class="form-label">First Name <span class="text-danger">*</span></label>
+            <input name="fName" ng-model="fName" type="text" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" placeholder="Enter your First Name" required>            
+            <div ng-show="frmSignIn.fName.$invalid" style="font-size: 0.75rem; color: red;">
+              This is a required field.
+            </div>
+
+            <label for="lName" class="form-label mt-3">Last Name <span class="text-danger">*</span></label>
+            <input name="lName" ng-model="lName" type="text" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" placeholder="Enter your Last Name" required>
+            <div ng-show="frmSignIn.lName.$invalid" style="font-size: 0.75rem; color: red;">
+              This is a required field.
+            </div>
+
+            <label for="birth" class="form-label mt-3">Date of Birth <span class="text-danger">*</span></label>
+            <input name="birth" ng-model="birth" type="date" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" required>
+            <div ng-show="frmSignIn.birth.$invalid" style="font-size: 0.75rem; color: red;">
+              This is a required field.
+            </div>
+            
+            
+            <label for="gender" class="form-label mt-3">Gender <span class="text-danger">*</span></label>
+            <select name="gender" ng-model="gender" class="form-select py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" aria-label="Default select example" placeholder="Choose an option..." required>              
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <div ng-show="frmSignIn.gender.$invalid" style="font-size: 0.75rem; color: red;">
+              This is a required field.
+            </div>
+
+            <label for="pNumber" class="form-label mt-3">Phone Number <span class="text-danger">*</span></label>
+            <input name="pNumber" ng-model="pNumber" type="number" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" placeholder="Enter your Phone Number" ng-pattern="/^[4-8][0-9]{10}$/" required>
+            <div ng-show="frmSignIn.pNumber.$error.pattern" style="font-size: 0.75rem; color: red;">
+              Please enter valid number!
+            </div>
+
+            <label for="email" class="form-label mt-3">Email <span class="text-danger">*</span></label>
+            <input name="email" ng-model="email" type="email" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" placeholder="Enter your email address" required>
+            <div ng-show="frmSignIn.email.$invalid" style="font-size: 0.75rem; color: red;">
+              This is a required field.
+            </div>
+            <div ng-show="checkEmail()" style="font-size: 0.75rem; color: red;">              
+              Your email has been taken.
+            </div>
+
+            <label for="passWord" class="form-label mt-3">Password <span class="text-danger">*</span></label>
+            <input name="passWord" ng-model="passWord" type="password" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle"  placeholder="Enter your password" required>
+            <p class="mb-0 fw-light {{passWordFilterBG(passWord)}} px-1 py-2" style="font-size: 0.75rem;">Password Strength: {{passWordFilter(passWord)}}</p>
+
+            <label for="rePassword" class="form-label mt-3">Confirm Password <span class="text-danger">*</span></label>
+            <input name="rePassword" ng-model="rePassword" type="password" class="form-control py-2 rounded-0 bg-body-secondary border-0 border-bottom border-secondary-subtle" placeholder="Confirm your password" required>
+            <div ng-show="frmSignIn.rePassword.$invalid" style="font-size: 0.75rem; color: red;">              
+              This is a required field.
+            </div>
+            <div ng-show="checkPassw()" style="font-size: 0.75rem; color: red;">              
+              Please enter the same value again.
+            </div>
+
+            <div class="mt-3">
+              <input class="form-check-input" ng-model="Newsletter" name="Newsletter" type="checkbox">
+              <label class="form-check-label" for="Newsletter">Subscribe Newsletter</label>
+            </div>
+
+            <p class="mt-5 mb-3" style="font-size: 0.7rem;"><span class="text-danger">* Required Fields</span></p>
+            <div class="d-grid w-100">
+              <button type="submit" ng-disabled="(!termCondition || !frmSignIn.$valid || checkPassw() || checkEmail())" ng-click="register()" class="btn rounded-0 btn-dark py-2">Register</button>              
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-1 d-none d-lg-block"></div>
+
+        <div class="col-lg-4 col-md-6 col-12 mt-4">
+          <div class="h-50 border-start border-light-subtle">
+            <div class=" ps-5 mb-4">
+              <h2 class="fw-bolder">Member Benefits</h2>
+              <p class="fw-light">
+                Create an account for a super fast checkout, save 
+                your favourites, and get personalised suggestions across Converse.vn
+              </p>
+              <h6 class="fw-light text-body-tertiary"><span class="ps-2 pe-2"><i class="me-2 fa-solid fa-truck-fast"></i></span>Fast, Free Shipping</h6>
+              <h6 class="fw-light text-body-tertiary"><span class="ps-2 pe-2"><i class="me-2 fa-solid fa-rotate-left"></i></span> Easy Returns</h6>
+              <h6 class="fw-light text-body-tertiary"><span class="ps-2 pe-2"><i class="me-2 fa-regular fa-heart"></i></span> Save Your Favourites</h6>
+              <h6 class="fw-light text-body-tertiary"><span class="ps-2 pe-2"><i class="me-2 fa-solid fa-splotch"></i></span> New Releases & Special Offers</h6>
+            </div>
+            <div class="d-flex ps-5 mt-0 ms-1 pt-4 border-top border-light-subtle">
+              <input class="form-check-input me-2" type="checkbox" ng-model="termCondition" checked id="flexCheckDefault" ng-checked>
+              <label class="form-check-label" for="flexCheckDefault">
+                By signing up, you're indicating that you have agreed with our <a href="#" class="text-decoration-none">Terms & Conditions</a>
+              </label>
+            </div>
+          </div>          
+        </div>
+
+        <div class="col-lg-2 d-none d-lg-block"></div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+          <div class="modal-header border-0">
+            <div class="container d-flex justify-content-center">
+              <div class="w-25"><img src="./img/logo/iconnew.png" class="img-fluid" alt=""></div>
+            </div>   
+          </div>
+          <div class="modal-body text-center">
+            <h4>Account Registered Successfully!</h4>            
+          </div>
+          <div class="modal-footer border-0">         
+            <a href="#!home" class="w-100"><button type="button" data-bs-dismiss="modal" ng-click="ScrollTo()" class="btn btn-dark w-100 rounded-0">Back to Homepage</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

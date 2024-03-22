@@ -1,0 +1,69 @@
+body{
+  font-family: 'Proxima Nova Condensed', sans-serif;
+  font-family: 'Proxima Nova Extra Condensed', sans-serif;
+}
+.top-header{
+  font-size: 12px;
+}
+
+
+.trending-box:hover .trending-hover{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.community-box:hover{
+  opacity: 0.8;
+}
+
+.underline-hover:hover{
+  text-decoration: underline;
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+  background-color: rgb(0, 0, 0) !important;  
+  color: white !important;
+}
+
+.form-check-input:checked{
+  background-color: black !important;
+  border-color: black !important;
+}
+
+.active>.page-link, .page-link.active{
+  background-color: black !important;
+  border-color: black !important;
+  color: white !important;
+}
+.heart-zoom{
+  transition: all 0.2s;
+}
+.heart-zoom:hover{
+  transform: scale(1.25);
+}
+.btnblack:hover{
+  background-color: white !important;
+  color: black !important;
+  border: 1px black solid !important;  
+}
+
+.favorite-hover:hover{
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+.color-option:hover{
+  border-color: black !important;
+}
+.offcanvas-style{
+  transition: 0.7ms ease;
+  transition: 0.5s cubic-bezier(0.1, 0.1, 0.1, 1);  
+}
+.offcanvas-style:hover{  
+  font-weight: 700;
+  border-bottom: 2px solid black;
+
+}
